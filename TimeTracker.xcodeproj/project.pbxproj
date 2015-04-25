@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A39CCA371AEC265E00EE55CD /* CoreDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BE825E1AEC0BB40094FAA4 /* CoreDataAccess.m */; };
+		A39CCA381AEC266100EE55CD /* CoreDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BE825E1AEC0BB40094FAA4 /* CoreDataAccess.m */; };
+		A39CCA391AEC266200EE55CD /* CoreDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BE825E1AEC0BB40094FAA4 /* CoreDataAccess.m */; };
 		A39CF5A51AEC186E00F60178 /* Event.h in Headers */ = {isa = PBXBuildFile; fileRef = A39CF5A31AEC186E00F60178 /* Event.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A39CF5A61AEC186E00F60178 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = A39CF5A41AEC186E00F60178 /* Event.m */; };
 		A39CF5AE1AEC19D800F60178 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A39CF5AD1AEC19D800F60178 /* NotificationCenter.framework */; };
@@ -22,7 +25,6 @@
 		A3BE82201AEC09B10094FAA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3BE821F1AEC09B10094FAA4 /* Images.xcassets */; };
 		A3BE82231AEC09B10094FAA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3BE82211AEC09B10094FAA4 /* LaunchScreen.xib */; };
 		A3BE82421AEC09E50094FAA4 /* TimeTrackerKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A3BE82411AEC09E50094FAA4 /* TimeTrackerKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A3BE82481AEC09E50094FAA4 /* TimeTrackerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BE823D1AEC09E50094FAA4 /* TimeTrackerKit.framework */; };
 		A3BE82541AEC09E50094FAA4 /* TimeTrackerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BE823D1AEC09E50094FAA4 /* TimeTrackerKit.framework */; };
 		A3BE82551AEC09E50094FAA4 /* TimeTrackerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A3BE823D1AEC09E50094FAA4 /* TimeTrackerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A3BE825F1AEC0BB40094FAA4 /* CoreDataAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = A3BE825D1AEC0BB40094FAA4 /* CoreDataAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -48,27 +50,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = A39CF5AA1AEC19D800F60178;
 			remoteInfo = TodayTimeTracker;
-		};
-		A3BE82291AEC09B10094FAA4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A3BE82011AEC09B10094FAA4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A3BE82081AEC09B10094FAA4;
-			remoteInfo = TimeTracker;
-		};
-		A3BE82491AEC09E50094FAA4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A3BE82011AEC09B10094FAA4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A3BE823C1AEC09E50094FAA4;
-			remoteInfo = TimeTrackerKit;
-		};
-		A3BE824B1AEC09E50094FAA4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A3BE82011AEC09B10094FAA4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A3BE82081AEC09B10094FAA4;
-			remoteInfo = TimeTracker;
 		};
 		A3BE82521AEC09E50094FAA4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -142,11 +123,9 @@
 		A3BE821D1AEC09B10094FAA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A3BE821F1AEC09B10094FAA4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A3BE82221AEC09B10094FAA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		A3BE82281AEC09B10094FAA4 /* TimeTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3BE823D1AEC09E50094FAA4 /* TimeTrackerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TimeTrackerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3BE82401AEC09E50094FAA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3BE82411AEC09E50094FAA4 /* TimeTrackerKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeTrackerKit.h; sourceTree = "<group>"; };
-		A3BE82471AEC09E50094FAA4 /* TimeTrackerKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeTrackerKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3BE825D1AEC0BB40094FAA4 /* CoreDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataAccess.h; sourceTree = "<group>"; };
 		A3BE825E1AEC0BB40094FAA4 /* CoreDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataAccess.m; sourceTree = "<group>"; };
 		A3BE82651AEC0D520094FAA4 /* TimeTracker WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TimeTracker WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,25 +163,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3BE82251AEC09B10094FAA4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A3BE82391AEC09E50094FAA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3BE82441AEC09E50094FAA4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A3BE82481AEC09E50094FAA4 /* TimeTrackerKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,9 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				A3BE82091AEC09B10094FAA4 /* TimeTracker.app */,
-				A3BE82281AEC09B10094FAA4 /* TimeTrackerTests.xctest */,
 				A3BE823D1AEC09E50094FAA4 /* TimeTrackerKit.framework */,
-				A3BE82471AEC09E50094FAA4 /* TimeTrackerKitTests.xctest */,
 				A3BE82651AEC0D520094FAA4 /* TimeTracker WatchKit Extension.appex */,
 				A3BE82701AEC0D520094FAA4 /* TimeTracker WatchKit App.app */,
 				A39CF5AB1AEC19D800F60178 /* TodayTimeTracker.appex */,
@@ -418,24 +380,6 @@
 			productReference = A3BE82091AEC09B10094FAA4 /* TimeTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A3BE82271AEC09B10094FAA4 /* TimeTrackerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A3BE82351AEC09B10094FAA4 /* Build configuration list for PBXNativeTarget "TimeTrackerTests" */;
-			buildPhases = (
-				A3BE82241AEC09B10094FAA4 /* Sources */,
-				A3BE82251AEC09B10094FAA4 /* Frameworks */,
-				A3BE82261AEC09B10094FAA4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A3BE822A1AEC09B10094FAA4 /* PBXTargetDependency */,
-			);
-			name = TimeTrackerTests;
-			productName = TimeTrackerTests;
-			productReference = A3BE82281AEC09B10094FAA4 /* TimeTrackerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		A3BE823C1AEC09E50094FAA4 /* TimeTrackerKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3BE82561AEC09E50094FAA4 /* Build configuration list for PBXNativeTarget "TimeTrackerKit" */;
@@ -453,25 +397,6 @@
 			productName = TimeTrackerKit;
 			productReference = A3BE823D1AEC09E50094FAA4 /* TimeTrackerKit.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		A3BE82461AEC09E50094FAA4 /* TimeTrackerKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A3BE825A1AEC09E50094FAA4 /* Build configuration list for PBXNativeTarget "TimeTrackerKitTests" */;
-			buildPhases = (
-				A3BE82431AEC09E50094FAA4 /* Sources */,
-				A3BE82441AEC09E50094FAA4 /* Frameworks */,
-				A3BE82451AEC09E50094FAA4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A3BE824A1AEC09E50094FAA4 /* PBXTargetDependency */,
-				A3BE824C1AEC09E50094FAA4 /* PBXTargetDependency */,
-			);
-			name = TimeTrackerKitTests;
-			productName = TimeTrackerKitTests;
-			productReference = A3BE82471AEC09E50094FAA4 /* TimeTrackerKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		A3BE82641AEC0D520094FAA4 /* TimeTracker WatchKit Extension */ = {
 			isa = PBXNativeTarget;
@@ -533,16 +458,8 @@
 							};
 						};
 					};
-					A3BE82271AEC09B10094FAA4 = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = A3BE82081AEC09B10094FAA4;
-					};
 					A3BE823C1AEC09E50094FAA4 = {
 						CreatedOnToolsVersion = 6.3.1;
-					};
-					A3BE82461AEC09E50094FAA4 = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = A3BE82081AEC09B10094FAA4;
 					};
 					A3BE82641AEC0D520094FAA4 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -572,9 +489,7 @@
 			projectRoot = "";
 			targets = (
 				A3BE82081AEC09B10094FAA4 /* TimeTracker */,
-				A3BE82271AEC09B10094FAA4 /* TimeTrackerTests */,
 				A3BE823C1AEC09E50094FAA4 /* TimeTrackerKit */,
-				A3BE82461AEC09E50094FAA4 /* TimeTrackerKitTests */,
 				A3BE82641AEC0D520094FAA4 /* TimeTracker WatchKit Extension */,
 				A3BE826F1AEC0D520094FAA4 /* TimeTracker WatchKit App */,
 				A39CF5AA1AEC19D800F60178 /* TodayTimeTracker */,
@@ -601,21 +516,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3BE82261AEC09B10094FAA4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A3BE823B1AEC09E50094FAA4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3BE82451AEC09E50094FAA4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -647,6 +548,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A39CCA381AEC266100EE55CD /* CoreDataAccess.m in Sources */,
 				A39CF5B41AEC19D800F60178 /* TodayViewController.m in Sources */,
 				A39CF5BE1AEC1A6A00F60178 /* TimeTracker.xcdatamodeld in Sources */,
 			);
@@ -656,18 +558,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A39CCA371AEC265E00EE55CD /* CoreDataAccess.m in Sources */,
 				A3BE821B1AEC09B10094FAA4 /* DetailViewController.m in Sources */,
 				A3BE82181AEC09B10094FAA4 /* MasterViewController.m in Sources */,
 				A3BE82121AEC09B10094FAA4 /* AppDelegate.m in Sources */,
 				A3BE828C1AEC10020094FAA4 /* TimeTracker.xcdatamodeld in Sources */,
 				A3BE820F1AEC09B10094FAA4 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3BE82241AEC09B10094FAA4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,13 +578,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3BE82431AEC09E50094FAA4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A3BE82611AEC0D520094FAA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -697,6 +586,7 @@
 				A3BE828F1AEC11A40094FAA4 /* TableViewController.m in Sources */,
 				A3BE82921AEC12200094FAA4 /* DetailInterfaceController.m in Sources */,
 				A3BE828B1AEC0FEF0094FAA4 /* TimeTracker.xcdatamodeld in Sources */,
+				A39CCA391AEC266200EE55CD /* CoreDataAccess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,21 +597,6 @@
 			isa = PBXTargetDependency;
 			target = A39CF5AA1AEC19D800F60178 /* TodayTimeTracker */;
 			targetProxy = A39CF5B71AEC19D800F60178 /* PBXContainerItemProxy */;
-		};
-		A3BE822A1AEC09B10094FAA4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A3BE82081AEC09B10094FAA4 /* TimeTracker */;
-			targetProxy = A3BE82291AEC09B10094FAA4 /* PBXContainerItemProxy */;
-		};
-		A3BE824A1AEC09E50094FAA4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A3BE823C1AEC09E50094FAA4 /* TimeTrackerKit */;
-			targetProxy = A3BE82491AEC09E50094FAA4 /* PBXContainerItemProxy */;
-		};
-		A3BE824C1AEC09E50094FAA4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A3BE82081AEC09B10094FAA4 /* TimeTracker */;
-			targetProxy = A3BE824B1AEC09E50094FAA4 /* PBXContainerItemProxy */;
 		};
 		A3BE82531AEC09E50094FAA4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -779,6 +654,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = TodayTimeTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -793,6 +669,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TodayTimeTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -890,6 +767,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TimeTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -904,43 +782,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TimeTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-			};
-			name = Release;
-		};
-		A3BE82361AEC09B10094FAA4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = TimeTrackerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimeTracker.app/TimeTracker";
-			};
-			name = Debug;
-		};
-		A3BE82371AEC09B10094FAA4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = TimeTrackerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimeTracker.app/TimeTracker";
 			};
 			name = Release;
 		};
@@ -958,6 +803,7 @@
 				);
 				INFOPLIST_FILE = TimeTrackerKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -976,43 +822,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TimeTrackerKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		A3BE825B1AEC09E50094FAA4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = TimeTrackerKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimeTracker.app/TimeTracker";
-			};
-			name = Debug;
-		};
-		A3BE825C1AEC09E50094FAA4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = TimeTrackerKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimeTracker.app/TimeTracker";
 			};
 			name = Release;
 		};
@@ -1110,29 +925,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A3BE82351AEC09B10094FAA4 /* Build configuration list for PBXNativeTarget "TimeTrackerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A3BE82361AEC09B10094FAA4 /* Debug */,
-				A3BE82371AEC09B10094FAA4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		A3BE82561AEC09E50094FAA4 /* Build configuration list for PBXNativeTarget "TimeTrackerKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A3BE82571AEC09E50094FAA4 /* Debug */,
 				A3BE82581AEC09E50094FAA4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A3BE825A1AEC09E50094FAA4 /* Build configuration list for PBXNativeTarget "TimeTrackerKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A3BE825B1AEC09E50094FAA4 /* Debug */,
-				A3BE825C1AEC09E50094FAA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
