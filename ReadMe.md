@@ -10,6 +10,7 @@ So on this project we also cover reading CoreData on:
 * WatchKit
 * Today's Extension
 
+It's pretty amazing to discover that on widget and on Apple Watch we actually can add on data on the CoreData. But yet still got an issue how to make it updated on the main app.
 
 # Extension-ability
 
@@ -24,6 +25,12 @@ The `xcdatamodeld` need to be on TimeTrackerKit, and make sure the target member
 So wherever on class, just import `#import <TimeTrackerKit/TimeTrackerKit.h>` to access the data.
 
 2. To make CoreData extension-ability we need to turn-on 'AppGroups'. Name it 'group.yourcompany.yourapp' on each of the main app, watch kit app, and today's extension.
+
+# Issue
+
+Well, we can add data from Widget but when we back to app, it doesnt refresh automatically.
+
+
 
 ---------
 

@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A39CCA371AEC265E00EE55CD /* CoreDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BE825E1AEC0BB40094FAA4 /* CoreDataAccess.m */; };
-		A39CCA381AEC266100EE55CD /* CoreDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BE825E1AEC0BB40094FAA4 /* CoreDataAccess.m */; };
-		A39CCA391AEC266200EE55CD /* CoreDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BE825E1AEC0BB40094FAA4 /* CoreDataAccess.m */; };
+		A31A2BCC1AEC297B0068D50F /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = A39CF5A41AEC186E00F60178 /* Event.m */; };
 		A39CF5A51AEC186E00F60178 /* Event.h in Headers */ = {isa = PBXBuildFile; fileRef = A39CF5A31AEC186E00F60178 /* Event.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A39CF5A61AEC186E00F60178 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = A39CF5A41AEC186E00F60178 /* Event.m */; };
 		A39CF5AE1AEC19D800F60178 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A39CF5AD1AEC19D800F60178 /* NotificationCenter.framework */; };
 		A39CF5B41AEC19D800F60178 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39CF5B31AEC19D800F60178 /* TodayViewController.m */; };
 		A39CF5B61AEC19D800F60178 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A39CF5B51AEC19D800F60178 /* MainInterface.storyboard */; };
@@ -548,7 +545,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A39CCA381AEC266100EE55CD /* CoreDataAccess.m in Sources */,
 				A39CF5B41AEC19D800F60178 /* TodayViewController.m in Sources */,
 				A39CF5BE1AEC1A6A00F60178 /* TimeTracker.xcdatamodeld in Sources */,
 			);
@@ -558,7 +554,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A39CCA371AEC265E00EE55CD /* CoreDataAccess.m in Sources */,
 				A3BE821B1AEC09B10094FAA4 /* DetailViewController.m in Sources */,
 				A3BE82181AEC09B10094FAA4 /* MasterViewController.m in Sources */,
 				A3BE82121AEC09B10094FAA4 /* AppDelegate.m in Sources */,
@@ -571,7 +566,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A39CF5A61AEC186E00F60178 /* Event.m in Sources */,
+				A31A2BCC1AEC297B0068D50F /* Event.m in Sources */,
 				A3BE82871AEC0DA10094FAA4 /* ReadMe.md in Sources */,
 				A3BE82601AEC0BB40094FAA4 /* CoreDataAccess.m in Sources */,
 				A3BE82891AEC0EC10094FAA4 /* TimeTracker.xcdatamodeld in Sources */,
@@ -586,7 +581,6 @@
 				A3BE828F1AEC11A40094FAA4 /* TableViewController.m in Sources */,
 				A3BE82921AEC12200094FAA4 /* DetailInterfaceController.m in Sources */,
 				A3BE828B1AEC0FEF0094FAA4 /* TimeTracker.xcdatamodeld in Sources */,
-				A39CCA391AEC266200EE55CD /* CoreDataAccess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

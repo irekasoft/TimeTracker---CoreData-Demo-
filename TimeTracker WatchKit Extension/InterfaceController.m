@@ -19,11 +19,11 @@
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
 
-    [self setupCoreData];
-    [self loadTableData];
+    [self refreshCoreData];
+    
 }
 
-- (void)setupCoreData{
+- (void)refreshCoreData{
     
     // Configure interface objects here.
     self.managedObjectContext = [CoreDataAccess sharedInstance].managedObjectContext;
@@ -44,18 +44,11 @@
     self.dataArray = @[@"sample", @"array"];
     
     NSMutableArray *tempArray = [NSMutableArray array];
+    [tempArray addObject:@"Add new..."];
     for (Event *event in result) {
         NSLog(@"%@", event.timeStamp);
-        
-        NSDateFormatter *formatter;
-        NSString        *dateString;
-        
-        formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
-        
-        dateString = [formatter stringFromDate:event.timeStamp];
-        
-        [tempArray addObject:dateString];
+
+        [tempArray addObject:[event.timeStamp description]];
     }
     self.dataArray = tempArray;
     
@@ -64,6 +57,8 @@
         
         NSLog(@" error fetching on the moc");
         
+    }else{
+        [self loadTableData];
     }
 }
 
@@ -71,8 +66,6 @@
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
 
-   
-    
 }
 
 - (void)didDeactivate {
@@ -89,6 +82,10 @@
     
     NSLog(@"here %d",(int)rowIndex);
     
+    if (rowIndex==0) {
+        [self insertNewObject:nil];
+    }
+    
     
 }
 
@@ -102,104 +99,36 @@
         TableViewController *row = [self.interfaceTable rowControllerAtIndex:idx];
         [row.interfaceLabel setText:string];
 
-        
-        
-        
         idx++;
     }
     
 }
 
-#pragma mark - Fetched results controller
 
-- (NSFetchedResultsController *)fetchedResultsController
-{
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
+#pragma mark - new object
+
+- (void)insertNewObject:(id)sender {
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
+    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:self.managedObjectContext];
     
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+    // If appropriate, configure the new managed object.
+    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
+    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
     
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
     
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
-    
+    // Save the context.
     NSError *error = nil;
-    if (![self.fetchedResultsController performFetch:&error]) {
+    if (![self.managedObjectContext save:&error]) {
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+    }else{
+        [self refreshCoreData];
     }
     
-    return _fetchedResultsController;
-}
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-          
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-          
-            break;
-            
-        default:
-            return;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-
     
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-         
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-           
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            
-            break;
-    }
 }
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-}
-
-
 @end
 
 
