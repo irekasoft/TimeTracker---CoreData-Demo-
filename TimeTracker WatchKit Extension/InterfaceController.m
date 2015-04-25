@@ -19,31 +19,59 @@
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
 
+    [self setupCoreData];
+    [self loadTableData];
+}
+
+- (void)setupCoreData{
+    
     // Configure interface objects here.
+    self.managedObjectContext = [CoreDataAccess sharedInstance].managedObjectContext;
+    
+    NSFetchRequest *request = [NSFetchRequest new];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    request.entity = entity;
+    
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"timeStamp" ascending:NO];
+    
+    NSArray *sortDescriptors = @[sortDescriptor];
+    request.sortDescriptors = sortDescriptors;
+    
+    NSError *error = nil;
+    NSArray *result = [self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    
+    self.dataArray = @[@"sample", @"array"];
+    
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (Event *event in result) {
+        NSLog(@"%@", event.timeStamp);
+        
+        NSDateFormatter *formatter;
+        NSString        *dateString;
+        
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
+        
+        dateString = [formatter stringFromDate:event.timeStamp];
+        
+        [tempArray addObject:dateString];
+    }
+    self.dataArray = tempArray;
+    
+    
+    if (![[CoreDataAccess sharedInstance].managedObjectContext save:&error]) {
+        
+        NSLog(@" error fetching on the moc");
+        
+    }
 }
 
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
 
-    self.managedObjectContext = [CoreDataAccess sharedInstance].managedObjectContext;
-    
-//    NSLog(@"%d", (int)[[self.fetchedResultsController sections] count]);
-    
-    NSInteger sections = [[self.fetchedResultsController sections] count];
-    
-    if (sections > 0) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][0];
-        
-        
-        NSLog(@"hi %d",[sectionInfo numberOfObjects]);
-        
-    }
-    
-    
-    self.dataArray = @[@"aaa", @"asdfas", @"asdf"];
-    
-    [self loadTableData];
+   
     
 }
 

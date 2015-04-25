@@ -18,3 +18,4 @@ FOUNDATION_EXPORT const unsigned char TimeTrackerKitVersionString[];
 
 
 #import "CoreDataAccess.h"
+#import "Event.h"
