@@ -11,6 +11,6 @@
 
 @interface DetailInterfaceController : WKInterfaceController
 
-
+@property (weak, nonatomic) IBOutlet WKInterfaceLabel *interfaceLabel;
 
 @end

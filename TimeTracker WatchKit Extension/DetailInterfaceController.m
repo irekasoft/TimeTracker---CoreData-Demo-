@@ -18,6 +18,10 @@
     [super awakeWithContext:context];
     
     // Configure interface objects here.
+    
+    // Configure interface objects here.
+    NSString *str = (NSString *)context;
+    self.interfaceLabel.text=str;
 }
 
 - (void)willActivate {

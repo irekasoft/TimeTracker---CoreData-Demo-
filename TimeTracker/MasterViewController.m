@@ -23,12 +23,6 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    NSLog(@"hi");
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -37,6 +31,25 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(handleDataModelChange:)
+     name:NSManagedObjectContextObjectsDidChangeNotification
+     object:self.managedObjectContext];
+}
+
+- (void)handleDataModelChange:(NSNotification *)note
+{
+    NSSet *updatedObjects = [[note userInfo] objectForKey:NSUpdatedObjectsKey];
+    NSSet *deletedObjects = [[note userInfo] objectForKey:NSDeletedObjectsKey];
+    NSSet *insertedObjects = [[note userInfo] objectForKey:NSInsertedObjectsKey];
+    
+    // Do something in response to this
+    
+    NSLog(@"something here");
 }
 
 - (void)didReceiveMemoryWarning {

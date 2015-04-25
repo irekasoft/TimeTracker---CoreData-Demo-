@@ -12,6 +12,16 @@ So on this project we also cover reading CoreData on:
 
 It's pretty amazing to discover that on widget and on Apple Watch we actually can add on data on the CoreData. But yet still got an issue how to make it updated on the main app.
 
+## Core data
+
+We have 'upgrade' CoreData code template code to support: 
+* migration
+* app groups
+
+## WatchApp
+
+Force-touch to add new event.
+
 # Extension-ability
 
 1. First of all, we need to know where the part of your code that will be the core of accessing data. Make it as a framework.
@@ -30,7 +40,9 @@ So wherever on class, just import `#import <TimeTrackerKit/TimeTrackerKit.h>` to
 
 Well, we can add data from Widget but when we back to app, it doesnt refresh automatically.
 
+# Todo
 
+Fix issue on auto refesh on main app.
 
 ---------
 

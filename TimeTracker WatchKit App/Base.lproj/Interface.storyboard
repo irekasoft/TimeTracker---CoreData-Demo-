@@ -21,16 +21,41 @@
                                     </group>
                                     <connections>
                                         <outlet property="interfaceLabel" destination="PFn-S1-p9t" id="J1Q-0I-aqo"/>
+                                        <segue destination="naS-Yp-jcT" kind="push" identifier="detail" id="sYs-Zn-lV9"/>
                                     </connections>
                                 </tableRow>
                             </items>
                         </table>
                     </items>
+                    <menu key="menu" id="kge-gq-H80">
+                        <items>
+                            <menuItem title="Add New" icon="add" id="pLb-71-jnn">
+                                <connections>
+                                    <action selector="menuAddNew" destination="AgC-eL-Hgc" id="7fX-dZ-mec"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="interfaceTable" destination="lsj-ih-aQG" id="wPy-BP-qBy"/>
                     </connections>
                 </controller>
             </objects>
+            <point key="canvasLocation" x="188" y="482"/>
+        </scene>
+        <!--Detail Interface Controller-->
+        <scene sceneID="ApP-Qy-25O">
+            <objects>
+                <controller id="naS-Yp-jcT" customClass="DetailInterfaceController">
+                    <items>
+                        <label width="1" height="80" alignment="left" text="Label" textAlignment="center" numberOfLines="5" id="RLm-7I-8oJ"/>
+                    </items>
+                    <connections>
+                        <outlet property="interfaceLabel" destination="RLm-7I-8oJ" id="Kfw-oM-txV"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="454" y="482"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.40334526973504009" green="0.4447861419812254" blue="0.73057347520107241" alpha="1" colorSpace="calibratedRGB"/>

@@ -21,6 +21,7 @@
 
     [self refreshCoreData];
     
+    [self setTitle:@"Events"];
 }
 
 - (void)refreshCoreData{
@@ -40,11 +41,9 @@
     NSError *error = nil;
     NSArray *result = [self.managedObjectContext executeFetchRequest:request error:&error];
     
-    
     self.dataArray = @[@"sample", @"array"];
     
     NSMutableArray *tempArray = [NSMutableArray array];
-    [tempArray addObject:@"Add new..."];
     for (Event *event in result) {
         NSLog(@"%@", event.timeStamp);
 
@@ -68,23 +67,22 @@
 
 }
 
-- (void)didDeactivate {
-    // This method is called when watch view controller is no longer visible
-    [super didDeactivate];
-}
 - (id)contextForSegueWithIdentifier:(NSString *)segueIdentifier inTable:(WKInterfaceTable *)table rowIndex:(NSInteger)rowIndex{
     
     NSString *str = self.dataArray[rowIndex];
     return str;
 }
 
+- (void)didDeactivate {
+    // This method is called when watch view controller is no longer visible
+    [super didDeactivate];
+}
+
+
+
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex{
     
     NSLog(@"here %d",(int)rowIndex);
-    
-    if (rowIndex==0) {
-        [self insertNewObject:nil];
-    }
     
     
 }
@@ -104,6 +102,12 @@
     
 }
 
+#pragma mark - Actions
+
+- (IBAction)menuAddNew {
+    
+    [self insertNewObject:nil];
+}
 
 #pragma mark - new object
 
