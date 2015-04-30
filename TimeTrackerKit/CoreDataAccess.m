@@ -110,5 +110,17 @@
     }
 }
 
+- (id)createEntity:(NSString *)entityForName{
+    
+    id object = [NSEntityDescription insertNewObjectForEntityForName:entityForName inManagedObjectContext:self.managedObjectContext];
+    
+    return object;
+}
+
+- (BOOL)deleteEntity:(NSManagedObject *)entity
+{
+    [[self managedObjectContext] deleteObject:entity];
+    return YES;
+}
 
 @end

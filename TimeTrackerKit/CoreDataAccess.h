@@ -18,6 +18,11 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (void)saveContext;
+
+
 - (NSURL *)applicationDocumentsDirectory;
+
+- (id)createEntity:(NSString *)entityForName;
+- (BOOL)deleteEntity:(NSManagedObject *)entity;
 
 @end

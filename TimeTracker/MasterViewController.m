@@ -40,6 +40,8 @@
      name:NSManagedObjectContextObjectsDidChangeNotification
      object:self.managedObjectContext];
     
+    
+
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
@@ -69,8 +71,8 @@
 
 - (void)insertNewObject:(id)sender {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    Event *event = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    
+    Event *event = [NSEntityDescription insertNewObjectForEntityForName:[Event description] inManagedObjectContext:context];
     event.title = @"Sample Title";
     event.timeStamp = [NSDate date];
         

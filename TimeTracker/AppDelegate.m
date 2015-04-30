@@ -10,6 +10,7 @@
 #import "DetailViewController.h"
 #import "MasterViewController.h"
 #import <TimeTrackerKit/TimeTrackerKit.h>
+#import "Event.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -28,6 +29,21 @@
     UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
     MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
     controller.managedObjectContext = [CoreDataAccess sharedInstance].managedObjectContext;
+ 
+    
+    // Setup App with prefilled Beer items.
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"HasPrefilled"]) {
+        // Create Blond Ale
+        Event *event = [[CoreDataAccess sharedInstance] createEntity:@"Event"];
+        event.timeStamp  = [NSDate date];
+        event.title =  @"Hello";
+            
+        
+        // Set User Default to prevent another preload of data on startup.
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasPrefilled"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
     return YES;
 }
 

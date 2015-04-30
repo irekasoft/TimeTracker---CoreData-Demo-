@@ -107,6 +107,7 @@
 		A39CF5B31AEC19D800F60178 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
 		A39CF5B51AEC19D800F60178 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		A39CF5BD1AEC19E000F60178 /* TodayTimeTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TodayTimeTracker.entitlements; sourceTree = "<group>"; };
+		A3A241751AF2DB68006747D5 /* TimeTracker 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TimeTracker 2.xcdatamodel"; sourceTree = "<group>"; };
 		A3BE82091AEC09B10094FAA4 /* TimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3BE820D1AEC09B10094FAA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3BE820E1AEC09B10094FAA4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -952,6 +953,7 @@
 		A3BE82131AEC09B10094FAA4 /* TimeTracker.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A3A241751AF2DB68006747D5 /* TimeTracker 2.xcdatamodel */,
 				A3BE82141AEC09B10094FAA4 /* TimeTracker.xcdatamodel */,
 			);
 			currentVersion = A3BE82141AEC09B10094FAA4 /* TimeTracker.xcdatamodel */;
