@@ -39,6 +39,15 @@
      selector:@selector(handleDataModelChange:)
      name:NSManagedObjectContextObjectsDidChangeNotification
      object:self.managedObjectContext];
+    
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (motion == UIEventSubtypeMotionShake)
+    {
+        NSLog(@"shaked");
+        [[self undoManager] undo];
+    }
 }
 
 - (void)handleDataModelChange:(NSNotification *)note
@@ -49,6 +58,7 @@
     
     // Do something in response to this
     
+    [[CoreDataAccess sharedInstance] saveContext];
     NSLog(@"something here");
 }
 
@@ -61,7 +71,7 @@
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     Event *event = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    
+    event.title = @"Sample Title";
     event.timeStamp = [NSDate date];
         
     // Save the context.
@@ -72,8 +82,17 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    
 }
 
+
+
+- (NSUndoManager *)undoManager{
+    return self.managedObjectContext.undoManager;
+}
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

@@ -19,6 +19,14 @@ Event has
 * timeStamp : Date
 * title : String
 
+## NSUndoManager
+
+This is implemented at CoreDataAccess. 
+
+We use shake motion detector to detect shake movement then undo.
+
+`[[self undoManager] undo];`
+
 ## Core data
 
 We have 'upgrade' CoreData code template code to support: 
@@ -47,7 +55,9 @@ So wherever on class, just import `#import <TimeTrackerKit/TimeTrackerKit.h>` to
 
 Well, we can add data from Widget but when we back to app, it doesnt refresh automatically. Well we can recommend that do not add data from the extension. 
 
+# Todo
 
+Make it capable to migrate. At least minor update.
 
 ---------
 

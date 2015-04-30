@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import <TimeTrackerKit/TimeTrackerKit.h>
 
 #import "Event.h" // <- this is a subclass of NSManagedObject
 
