@@ -1,9 +1,9 @@
 //
 //  Event.h
-//  
+//  TimeTracker
 //
-//  Created by Hijazi on 26/4/15.
-//
+//  Created by Hijazi on 1/5/15.
+//  Copyright (c) 2015 iReka Soft. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,5 +13,6 @@
 @interface Event : NSManagedObject
 
 @property (nonatomic, retain) NSDate * timeStamp;
+@property (nonatomic, retain) NSString * title;
 
 @end

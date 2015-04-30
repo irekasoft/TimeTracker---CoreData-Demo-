@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "Event.h" // <- this is a subclass of NSManagedObject
+
 @class DetailViewController;
 
 @interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>

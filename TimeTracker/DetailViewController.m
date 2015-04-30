@@ -27,9 +27,21 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
+    if (self.event) {
+        self.detailDescriptionLabel.text = [self.event.timeStamp description];
+        self.textField.text = self.event.title;
     }
+    
+    self.datePicker.date = self.event.timeStamp;
+    
+}
+- (IBAction)updateDate:(id)sender {
+    
+    self.event.timeStamp = self.datePicker.date;
+    self.event.title = self.textField.text;
+    
+    // Update the view.
+    [self configureView];
 }
 
 - (void)viewDidLoad {
@@ -41,6 +53,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)touchHandler:(id)sender {
+
+    [self.view endEditing:YES];
+    
 }
 
 @end

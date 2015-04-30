@@ -1,5 +1,5 @@
 # TimeTracker
-## a CoreData Sampler on Objective-C
+## CoreData Sampler on Objective-C
 
 This project showcase the basic (template) of CoreData on a custom framework. 
 
@@ -11,6 +11,13 @@ So on this project we also cover reading CoreData on:
 * Today's Extension
 
 It's pretty amazing to discover that on widget and on Apple Watch we actually can add on data on the CoreData. But yet still got an issue how to make it updated on the main app.
+
+Simple Database which has Event entity. 
+
+Event has 
+
+* timeStamp : Date
+* title : String
 
 ## Core data
 
@@ -38,11 +45,9 @@ So wherever on class, just import `#import <TimeTrackerKit/TimeTrackerKit.h>` to
 
 # Issue
 
-Well, we can add data from Widget but when we back to app, it doesnt refresh automatically.
+Well, we can add data from Widget but when we back to app, it doesnt refresh automatically. Well we can recommend that do not add data from the extension. 
 
-# Todo
 
-Fix issue on auto refesh on main app.
 
 ---------
 

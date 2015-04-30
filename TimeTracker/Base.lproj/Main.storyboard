@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -22,34 +23,80 @@
         <!--Detail-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="Detail" id="JEX-9P-axG" customClass="DetailViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController title="Detail" id="JEX-9P-axG" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="svH-Pt-448">
+                    <view key="view" contentMode="scaleToFill" id="svH-Pt-448" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="292" width="560" height="17"/>
+                                <rect key="frame" x="205" y="111" width="191" height="17"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" size="system"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mux-Cq-JMy">
+                                <rect key="frame" x="275" y="458" width="51" height="30"/>
+                                <state key="normal" title="Update">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateDate:" destination="JEX-9P-axG" eventType="touchUpInside" id="3NH-W9-BqE"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tLJ-1m-Gee">
+                                <rect key="frame" x="180" y="136" width="240" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="ItE-LF-eA1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="SPB-wn-eZ1">
+                                <rect key="frame" x="0.0" y="192" width="600" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="244" id="hCw-ID-c3O"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="452114811.142097">
+                                    <!--2015-04-30 19:26:51 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
-                            <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
+                            <constraint firstAttribute="centerX" secondItem="0XM-y9-sOw" secondAttribute="centerX" id="5iH-Ln-riq"/>
+                            <constraint firstAttribute="centerX" secondItem="Mux-Cq-JMy" secondAttribute="centerX" id="9gR-Yh-sEf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tLJ-1m-Gee" secondAttribute="trailing" constant="164" id="NSl-W4-6yZ"/>
+                            <constraint firstAttribute="centerX" secondItem="tLJ-1m-Gee" secondAttribute="centerX" id="QfC-ul-3gn"/>
+                            <constraint firstAttribute="centerX" secondItem="0XM-y9-sOw" secondAttribute="centerX" id="Vy6-0c-kzZ"/>
+                            <constraint firstAttribute="centerY" secondItem="SPB-wn-eZ1" secondAttribute="centerY" id="Yca-pe-zjq"/>
+                            <constraint firstItem="SPB-wn-eZ1" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-16" id="cFN-XJ-3Gb"/>
+                            <constraint firstItem="tLJ-1m-Gee" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="164" id="gcG-vz-msf"/>
+                            <constraint firstItem="Mux-Cq-JMy" firstAttribute="top" secondItem="SPB-wn-eZ1" secondAttribute="bottom" constant="36" id="qml-wt-TnM"/>
+                            <constraint firstItem="tLJ-1m-Gee" firstAttribute="top" secondItem="0XM-y9-sOw" secondAttribute="bottom" constant="8" id="rFK-aM-uXs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SPB-wn-eZ1" secondAttribute="trailing" constant="-16" id="rgC-v2-0M6"/>
+                            <constraint firstItem="SPB-wn-eZ1" firstAttribute="top" secondItem="0XM-y9-sOw" secondAttribute="bottom" constant="50" id="u1d-GW-wIJ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="NSl-W4-6yZ"/>
+                                <exclude reference="gcG-vz-msf"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <action selector="touchHandler:" destination="JEX-9P-axG" eventType="touchUpInside" id="XbW-qG-Ag2"/>
+                        </connections>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
+                        <outlet property="datePicker" destination="SPB-wn-eZ1" id="6dC-GO-PZu"/>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <outlet property="textField" destination="tLJ-1m-Gee" id="Z0H-cQ-tyC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -73,7 +120,7 @@
         <!--Master-->
         <scene sceneID="smW-Zh-WAh">
             <objects>
-                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="MasterViewController" customModuleProvider="" sceneMemberID="viewController">
+                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="MasterViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="r7i-6Z-zg0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

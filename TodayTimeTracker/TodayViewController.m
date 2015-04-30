@@ -77,7 +77,7 @@
     completionHandler(NCUpdateResultNewData);
 }
 
-#pragma mark - UITableViewDataSource,
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
