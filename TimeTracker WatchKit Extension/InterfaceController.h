@@ -11,7 +11,7 @@
 #import "TableViewController.h"
 #import <CoreData/CoreData.h>
 
-@interface InterfaceController : WKInterfaceController <NSFetchedResultsControllerDelegate>
+@interface InterfaceController : WKInterfaceController 
 
 @property (weak, nonatomic) IBOutlet WKInterfaceTable *interfaceTable;
 @property (strong) NSArray *dataArray;
