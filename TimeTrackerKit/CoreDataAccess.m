@@ -51,9 +51,32 @@
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"TimeTracker.sqlite"];
     NSError *error = nil;
+    
+    NSDictionary *options;
+    
+    // probably we want to have a settings panel that request that we want to use
+    // icloud or not
+    
+    
+//    if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"WANT_ICLOUD"] == YES ) {
+    
+    if ( 1 ) {
+        
+        options = @{NSMigratePersistentStoresAutomaticallyOption:@YES,
+                    NSInferMappingModelAutomaticallyOption:@YES,
+                    NSPersistentStoreUbiquitousContentNameKey : @"iCloudStore"
+                    };
+        
+        [self add_iCloudNotifications];
+        
+    }else{
+        
+        options = @{NSMigratePersistentStoresAutomaticallyOption:@YES,
+                    NSInferMappingModelAutomaticallyOption:@YES
+                    };
+    }
 
-    NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption:@YES,
-                              NSInferMappingModelAutomaticallyOption:@YES};
+    
     
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
@@ -122,5 +145,87 @@
     [[self managedObjectContext] deleteObject:entity];
     return YES;
 }
+
+#pragma mark - notif
+
+- (void)add_iCloudNotifications{
+    
+    __weak NSPersistentStoreCoordinator *psc = self.managedObjectContext.persistentStoreCoordinator;
+    
+    // iCloud notification subscriptions
+    NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
+    [dc addObserver:self
+           selector:@selector(storesWillChange:)
+               name:NSPersistentStoreCoordinatorStoresWillChangeNotification
+             object:psc];
+    
+    [dc addObserver:self
+           selector:@selector(storesDidChange:)
+               name:NSPersistentStoreCoordinatorStoresDidChangeNotification
+             object:psc];
+    
+    [dc addObserver:self
+           selector:@selector(persistentStoreDidImportUbiquitousContentChanges:)
+               name:NSPersistentStoreDidImportUbiquitousContentChangesNotification
+             object:psc];
+    
+}
+
+// Subscribe to NSPersistentStoreCoordinatorStoresWillChangeNotification
+// most likely to be called if the user enables / disables iCloud
+// (either globally, or just for your app) or if the user changes
+// iCloud accounts.
+- (void)storesWillChange:(NSNotification *)note {
+    NSManagedObjectContext *moc = self.managedObjectContext;
+    [moc performBlockAndWait:^{
+        NSError *error = nil;
+        if ([moc hasChanges]) {
+            [moc save:&error];
+        }
+        
+        [moc reset];
+    }];
+    
+    // now reset your UI to be prepared for a totally different
+    // set of data (eg, popToRootViewControllerAnimated:)
+    // but don't load any new data yet.
+}
+
+// Subscribe to NSPersistentStoreCoordinatorStoresDidChangeNotification
+- (void)storesDidChange:(NSNotification *)note {
+    // here is when you can refresh your UI and
+    // load new data from the new store
+}
+
+// Subscribe to NSPersistentStoreDidImportUbiquitousContentChangesNotification
+- (void)persistentStoreDidImportUbiquitousContentChanges:(NSNotification*)note
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NSLog(@"%@", note.userInfo.description);
+    
+    NSManagedObjectContext *moc = self.managedObjectContext;
+    [moc performBlock:^{
+        [moc mergeChangesFromContextDidSaveNotification:note];
+        
+        // you may want to post a notification here so that which ever part of your app
+        // needs to can react appropriately to what was merged.
+        // An exmaple of how to iterate over what was merged follows, although I wouldn't
+        // recommend doing it here. Better handle it in a delegate or use notifications.
+        // Note that the notification contains NSManagedObjectIDs
+        // and not NSManagedObjects.
+        NSDictionary *changes = note.userInfo;
+        NSMutableSet *allChanges = [NSMutableSet new];
+        [allChanges unionSet:changes[NSInsertedObjectsKey]];
+        [allChanges unionSet:changes[NSUpdatedObjectsKey]];
+        [allChanges unionSet:changes[NSDeletedObjectsKey]];
+        
+        for (NSManagedObjectID *objID in allChanges) {
+            // do whatever you need to with the NSManagedObjectID
+            // you can retrieve the object from with [moc objectWithID:objID]
+        }
+        
+    }];
+}
+
 
 @end
