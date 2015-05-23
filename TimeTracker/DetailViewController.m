@@ -30,9 +30,10 @@
     if (self.event) {
         self.detailDescriptionLabel.text = [self.event.timeStamp description];
         self.textField.text = self.event.title;
+        self.datePicker.date = self.event.timeStamp;
     }
     
-    self.datePicker.date = self.event.timeStamp;
+    
     
 }
 - (IBAction)updateDate:(id)sender {

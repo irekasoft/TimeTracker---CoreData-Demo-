@@ -30,13 +30,37 @@
     return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.irekasoft.timetracker"];
 }
 
+- (NSDictionary *)iCloudPersistentStoreOptions {
+    return @{NSPersistentStoreUbiquitousContentNameKey:@"iCloudStore"};
+}
+
+- (NSDictionary *)storeOptions {
+    return @{NSPersistentStoreUbiquitousContentNameKey:@"iCloudStore"};
+}
+
+- (NSURL *)storeURL{
+    
+    return [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"TimeTracker.sqlite"];
+}
+
+- (NSURL *)newStoreURL{
+    
+    return [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"NewTimeTracker.sqlite"];
+}
+
+- (NSURL *)modelURL{
+    return [[NSBundle mainBundle] URLForResource:@"TimeTracker" withExtension:@"momd"];
+}
+
+
+
 - (NSManagedObjectModel *)managedObjectModel {
     // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"TimeTracker" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[self modelURL]];
     return _managedObjectModel;
 }
 
@@ -49,25 +73,26 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"TimeTracker.sqlite"];
+    NSURL *storeURL;
     NSError *error = nil;
+    
+    
+    storeURL = [self storeURL];
+    
     
     NSDictionary *options;
     
     // probably we want to have a settings panel that request that we want to use
     // icloud or not
     
-    
-//    if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"WANT_ICLOUD"] == YES ) {
-    
-    if ( 1 ) {
-        
-        options = @{NSMigratePersistentStoresAutomaticallyOption:@YES,
-                    NSInferMappingModelAutomaticallyOption:@YES,
-                    NSPersistentStoreUbiquitousContentNameKey : @"iCloudStore"
-                    };
-        
+    if ( ENABLE_ICLOUD == YES ) {
+        // add icloud notification when we have the persistentcoordinator
         [self add_iCloudNotifications];
+        
+        options = @{NSMigratePersistentStoresAutomaticallyOption  :@YES,
+                    NSInferMappingModelAutomaticallyOption  :@YES,
+                    NSPersistentStoreUbiquitousContentNameKey : @"iCloudStore",
+                    };
         
     }else{
         
@@ -76,7 +101,6 @@
                     };
     }
 
-    
     
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
@@ -96,6 +120,46 @@
 }
 
 
+# pragma mark - iCloud Support
+
+
+
+
+// Disabling iCloud Persistence
+- (void)migrateiCloudStoreToLocalStore {
+    // assuming you only have one store.
+    NSPersistentStore *store = [[_persistentStoreCoordinator persistentStores] firstObject];
+    
+    NSMutableDictionary *localStoreOptions = [[self storeOptions] mutableCopy];
+    
+    [localStoreOptions setObject:@YES forKey:NSPersistentStoreRemoveUbiquitousMetadataOption];
+    
+    if(![_persistentStoreCoordinator migratePersistentStore:store
+                                                      toURL:[self newStoreURL]
+                                                    options:localStoreOptions
+                                                   withType:NSSQLiteStoreType error:nil]){
+        
+        
+    }
+    
+    [self reloadStore:_persistentStoreCoordinator.persistentStores[0]];
+}
+
+- (void)reloadStore:(NSPersistentStore *)store {
+    
+    NSLog(@"reload store");
+    if (store) {
+        [_persistentStoreCoordinator removePersistentStore:store error:nil];
+    }
+    
+    [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                               configuration:nil
+                                         URL:[self newStoreURL]
+                                     options:[self storeOptions]
+                                       error:nil];
+}
+
+
 - (NSManagedObjectContext *)managedObjectContext {
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
     if (_managedObjectContext != nil) {
@@ -106,7 +170,8 @@
     if (!coordinator) {
         return nil;
     }
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
+    _managedObjectContext = [[NSManagedObjectContext alloc]
+                             initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     
     // add undo
@@ -146,12 +211,61 @@
     return YES;
 }
 
-#pragma mark - notif
+#pragma mark - notifications
 
 - (void)add_iCloudNotifications{
     
-    __weak NSPersistentStoreCoordinator *psc = self.managedObjectContext.persistentStoreCoordinator;
     
+//    [[NSNotificationCenter defaultCenter]
+//     addObserverForName:NSPersistentStoreCoordinatorStoresWillChangeNotification
+//     object:self.managedObjectContext.persistentStoreCoordinator
+//     queue:[NSOperationQueue mainQueue]
+//     usingBlock:^(NSNotification *note) {
+//         NSLog(@"NSPersistentStoreCoordinatorStoresWillChangeNotification");
+//         [self.managedObjectContext performBlock:^{
+//             [self.managedObjectContext reset];
+//         }];
+//         // drop any managed object references
+//         // disable user interface with setEnabled: or an overlay
+//
+//         
+//     }];
+//    
+//    
+//    [[NSNotificationCenter defaultCenter]
+//     addObserverForName:NSPersistentStoreCoordinatorStoresWillChangeNotification
+//     object:self.managedObjectContext.persistentStoreCoordinator
+//     queue:[NSOperationQueue mainQueue]
+//     usingBlock:^(NSNotification *note) {
+//         // disable user interface with setEnabled: or an overlay
+//         NSLog(@"NSPersistentStoreCoordinatorStoresWillChangeNotification");
+//         [self.managedObjectContext performBlock:^{
+//             if ([self.managedObjectContext hasChanges]) {
+//                 NSError *saveError;
+//                 if (![self.managedObjectContext save:&saveError]) {
+//                     NSLog(@"Save error: %@", saveError);
+//                 }
+//             } else {
+//                 // drop any managed object references
+//                 [self.managedObjectContext reset];
+//             }
+//         }];
+//     }];
+//
+//    
+//    [[NSNotificationCenter defaultCenter]
+//     addObserverForName:NSPersistentStoreDidImportUbiquitousContentChangesNotification
+//     object:self.managedObjectContext.persistentStoreCoordinator
+//     queue:[NSOperationQueue mainQueue]
+//     usingBlock:^(NSNotification *note) {
+//         NSLog(@"NSPersistentStoreDidImportUbiquitousContentChangesNotification");
+//         [self.managedObjectContext performBlock:^{
+//             [self.managedObjectContext mergeChangesFromContextDidSaveNotification:note];
+//         }];
+//     }];
+    
+    __weak NSPersistentStoreCoordinator *psc = self.managedObjectContext.persistentStoreCoordinator;
+
     // iCloud notification subscriptions
     NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
     [dc addObserver:self
@@ -171,19 +285,22 @@
     
 }
 
+#pragma mark - icloud notif handler
+
 // Subscribe to NSPersistentStoreCoordinatorStoresWillChangeNotification
 // most likely to be called if the user enables / disables iCloud
 // (either globally, or just for your app) or if the user changes
 // iCloud accounts.
+
 - (void)storesWillChange:(NSNotification *)note {
-    NSManagedObjectContext *moc = self.managedObjectContext;
-    [moc performBlockAndWait:^{
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    [managedObjectContext performBlockAndWait:^{
         NSError *error = nil;
-        if ([moc hasChanges]) {
-            [moc save:&error];
+        if ([managedObjectContext hasChanges]) {
+            [managedObjectContext save:&error];
         }
         
-        [moc reset];
+        [managedObjectContext reset];
     }];
     
     // now reset your UI to be prepared for a totally different
@@ -195,6 +312,8 @@
 - (void)storesDidChange:(NSNotification *)note {
     // here is when you can refresh your UI and
     // load new data from the new store
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NSLog(@"%@", note.userInfo.description);
 }
 
 // Subscribe to NSPersistentStoreDidImportUbiquitousContentChangesNotification
@@ -222,6 +341,7 @@
         for (NSManagedObjectID *objID in allChanges) {
             // do whatever you need to with the NSManagedObjectID
             // you can retrieve the object from with [moc objectWithID:objID]
+            NSLog(@"objID %@",objID);
         }
         
     }];

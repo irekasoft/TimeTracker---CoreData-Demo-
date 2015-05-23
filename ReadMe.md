@@ -19,6 +19,10 @@ Event has
 * timeStamp : Date
 * title : String
 
+## iCloud Support 
+
+We have added iCloud support. Tested and seems to work. Although next refinement will coming.
+
 ## NSUndoManager
 
 This is implemented at CoreDataAccess. 
@@ -54,6 +58,15 @@ So wherever on class, just import `#import <TimeTrackerKit/TimeTrackerKit.h>` to
 # Issue
 
 Well, we can add data from Widget but when we back to app, it doesnt refresh automatically. Well we can recommend that do not add data from the extension. 
+
+
+# Reference
+
+http://www.objc.io/issue-10/icloud-core-data.html
+
+https://developer.apple.com/library/ios/documentation/DataManagement/Conceptual/UsingCoreDataWithiCloudPG/Introduction/Introduction.html
+
+https://developer.apple.com/library/mac/documentation/General/Conceptual/iCloudDesignGuide/Chapters/iCloudFundametals.html
 
 # Todo
 

@@ -10,6 +10,7 @@
 		A31A2BCC1AEC297B0068D50F /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = A39CF5A41AEC186E00F60178 /* Event.m */; };
 		A3474C7E1B10F9F00075F58B /* CoreDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BE825E1AEC0BB40094FAA4 /* CoreDataAccess.m */; };
 		A3474C7F1B10F9F30075F58B /* CoreDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BE825E1AEC0BB40094FAA4 /* CoreDataAccess.m */; };
+		A3474C841B1113450075F58B /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3474C831B1113450075F58B /* SettingsVC.m */; };
 		A39CF5A51AEC186E00F60178 /* Event.h in Headers */ = {isa = PBXBuildFile; fileRef = A39CF5A31AEC186E00F60178 /* Event.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A39CF5AE1AEC19D800F60178 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A39CF5AD1AEC19D800F60178 /* NotificationCenter.framework */; };
 		A39CF5B41AEC19D800F60178 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39CF5B31AEC19D800F60178 /* TodayViewController.m */; };
@@ -100,6 +101,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A3474C821B1113450075F58B /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
+		A3474C831B1113450075F58B /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
 		A39CF5A31AEC186E00F60178 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		A39CF5A41AEC186E00F60178 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		A39CF5AB1AEC19D800F60178 /* TodayTimeTracker.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodayTimeTracker.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -245,6 +248,8 @@
 				A3BE82191AEC09B10094FAA4 /* DetailViewController.h */,
 				A3BE821A1AEC09B10094FAA4 /* DetailViewController.m */,
 				A3BE821C1AEC09B10094FAA4 /* Main.storyboard */,
+				A3474C821B1113450075F58B /* SettingsVC.h */,
+				A3474C831B1113450075F58B /* SettingsVC.m */,
 				A3BE821F1AEC09B10094FAA4 /* Images.xcassets */,
 				A3BE82211AEC09B10094FAA4 /* LaunchScreen.xib */,
 				A3BE820C1AEC09B10094FAA4 /* Supporting Files */,
@@ -566,6 +571,7 @@
 				A3BE82121AEC09B10094FAA4 /* AppDelegate.m in Sources */,
 				A3BE828C1AEC10020094FAA4 /* TimeTracker.xcdatamodeld in Sources */,
 				A3BE820F1AEC09B10094FAA4 /* main.m in Sources */,
+				A3474C841B1113450075F58B /* SettingsVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

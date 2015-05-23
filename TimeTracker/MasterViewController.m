@@ -26,13 +26,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
+    
+    self.navigationItem.leftBarButtonItems = @[self.editButtonItem,refreshButton];
+
+    
+    UIBarButtonItem *addAttachButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(optionClicked:)];
+    self.navigationItem.rightBarButtonItems = @[addAttachButton,sendButton];
+    
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    
-    
     
     [[NSNotificationCenter defaultCenter]
      addObserver:self
@@ -40,8 +44,41 @@
      name:NSManagedObjectContextObjectsDidChangeNotification
      object:self.managedObjectContext];
     
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    id currentiCloudToken = fileManager.ubiquityIdentityToken;
+    NSLog(@"icloud token %@",currentiCloudToken);
+    if (currentiCloudToken) {
+        NSData *newTokenData =
+        [NSKeyedArchiver archivedDataWithRootObject: currentiCloudToken];
+        [[NSUserDefaults standardUserDefaults]
+         setObject: newTokenData
+         forKey: @"com.apple.MyAppName.UbiquityIdentityToken"];
+    } else {
+        [[NSUserDefaults standardUserDefaults]
+         removeObjectForKey: @"com.apple.MyAppName.UbiquityIdentityToken"];
+    }
     
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector (iCloudAccountAvailabilityChanged:)
+     name: NSUbiquityIdentityDidChangeNotification
+     object: nil];
+    
+   
+}
 
+- (void)iCloudAccountAvailabilityChanged:(id)sender{
+    
+}
+
+- (void)refresh:(id)sender{
+    [self.tableView reloadData];
+}
+
+- (void)optionClicked:(id)sender{
+    
+    [self performSegueWithIdentifier:@"openSettings" sender:nil];
+    
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
@@ -61,7 +98,7 @@
     // Do something in response to this
     
     [[CoreDataAccess sharedInstance] saveContext];
-    NSLog(@"something here");
+    NSLog(@"something here %@ %@ %@ ", insertedObjects, updatedObjects, deletedObjects);
 }
 
 - (void)didReceiveMemoryWarning {

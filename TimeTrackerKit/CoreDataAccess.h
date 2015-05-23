@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#define ENABLE_ICLOUD YES
+
 @interface CoreDataAccess : NSObject
 
 + (CoreDataAccess*)sharedInstance;
@@ -17,6 +19,8 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+
+
 - (void)saveContext;
 
 
@@ -24,5 +28,12 @@
 
 - (id)createEntity:(NSString *)entityForName;
 - (BOOL)deleteEntity:(NSManagedObject *)entity;
+
+
+#pragma mark iCloud support
+
+- (void)migrateiCloudStoreToLocalStore;
+
+
 
 @end
