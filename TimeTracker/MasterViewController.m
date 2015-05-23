@@ -38,12 +38,79 @@
     
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
+    
+    [self add_iCloudNotifications];
+    
     [[NSNotificationCenter defaultCenter]
      addObserver:self
      selector:@selector(handleDataModelChange:)
      name:NSManagedObjectContextObjectsDidChangeNotification
      object:self.managedObjectContext];
     
+ 
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector(iCloudAccountAvailabilityChanged:)
+     name: NSUbiquityIdentityDidChangeNotification
+     object: nil];
+    
+   
+}
+
+- (void)add_iCloudNotifications{
+    
+    __weak NSPersistentStoreCoordinator *psc = self.managedObjectContext.persistentStoreCoordinator;
+    
+    // iCloud notification subscriptions
+    NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
+    [dc addObserver:self
+           selector:@selector(storesWillChange:)
+               name:NSPersistentStoreCoordinatorStoresWillChangeNotification
+             object:psc];
+    
+    [dc addObserver:self
+           selector:@selector(storesDidChange:)
+               name:NSPersistentStoreCoordinatorStoresDidChangeNotification
+             object:psc];
+    
+    [dc addObserver:self
+           selector:@selector(persistentStoreDidImportUbiquitousContentChanges:)
+               name:NSPersistentStoreDidImportUbiquitousContentChangesNotification
+             object:psc];
+    
+}
+
+#pragma mark - icloud notif handler
+
+// Subscribe to NSPersistentStoreCoordinatorStoresWillChangeNotification
+// most likely to be called if the user enables / disables iCloud
+// (either globally, or just for your app) or if the user changes
+// iCloud accounts.
+
+- (void)storesWillChange:(NSNotification *)note {
+    [self refresh:nil];
+}
+
+// Subscribe to NSPersistentStoreCoordinatorStoresDidChangeNotification
+- (void)storesDidChange:(NSNotification *)note {
+    // here is when you can refresh your UI and
+    // load new data from the new store
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NSLog(@"%@", note.userInfo.description);
+    [self refresh:nil];
+}
+
+// Subscribe to NSPersistentStoreDidImportUbiquitousContentChangesNotification
+- (void)persistentStoreDidImportUbiquitousContentChanges:(NSNotification*)note
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NSLog(@"%@", note.userInfo.description);
+    [self refresh:nil];
+}
+
+
+- (void)iCloudAccountAvailabilityChanged:(id)sender{
     NSFileManager* fileManager = [NSFileManager defaultManager];
     id currentiCloudToken = fileManager.ubiquityIdentityToken;
     NSLog(@"icloud token %@",currentiCloudToken);
@@ -57,21 +124,10 @@
         [[NSUserDefaults standardUserDefaults]
          removeObjectForKey: @"com.apple.MyAppName.UbiquityIdentityToken"];
     }
-    
-    [[NSNotificationCenter defaultCenter]
-     addObserver: self
-     selector: @selector (iCloudAccountAvailabilityChanged:)
-     name: NSUbiquityIdentityDidChangeNotification
-     object: nil];
-    
-   
-}
-
-- (void)iCloudAccountAvailabilityChanged:(id)sender{
-    
 }
 
 - (void)refresh:(id)sender{
+    self.managedObjectContext = [CoreDataAccess sharedInstance].managedObjectContext;
     [self.tableView reloadData];
 }
 
@@ -89,16 +145,17 @@
     }
 }
 
-- (void)handleDataModelChange:(NSNotification *)note
+- (void)handleDataModelChange:(NSNotification *)notification
 {
-    NSSet *updatedObjects = [[note userInfo] objectForKey:NSUpdatedObjectsKey];
-    NSSet *deletedObjects = [[note userInfo] objectForKey:NSDeletedObjectsKey];
-    NSSet *insertedObjects = [[note userInfo] objectForKey:NSInsertedObjectsKey];
+    NSSet *updatedObjects = [[notification userInfo] objectForKey:NSUpdatedObjectsKey];
+    NSSet *deletedObjects = [[notification userInfo] objectForKey:NSDeletedObjectsKey];
+    NSSet *insertedObjects = [[notification userInfo] objectForKey:NSInsertedObjectsKey];
     
     // Do something in response to this
     
     [[CoreDataAccess sharedInstance] saveContext];
     NSLog(@"something here %@ %@ %@ ", insertedObjects, updatedObjects, deletedObjects);
+    [self refresh:nil];
 }
 
 - (void)didReceiveMemoryWarning {

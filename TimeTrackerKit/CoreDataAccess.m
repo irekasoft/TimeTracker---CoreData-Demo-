@@ -89,14 +89,14 @@
         // add icloud notification when we have the persistentcoordinator
         [self add_iCloudNotifications];
         
-        options = @{NSMigratePersistentStoresAutomaticallyOption  :@YES,
-                    NSInferMappingModelAutomaticallyOption  :@YES,
-                    NSPersistentStoreUbiquitousContentNameKey : @"iCloudStore",
+        options = @{NSMigratePersistentStoresAutomaticallyOption:@YES,
+                    NSInferMappingModelAutomaticallyOption:@YES,
+                    NSPersistentStoreUbiquitousContentNameKey: @"iCloudStore",
                     };
         
     }else{
         
-        options = @{NSMigratePersistentStoresAutomaticallyOption:@YES,
+        options = @{NSMigratePersistentStoresAutomaticallyOption: @YES,
                     NSInferMappingModelAutomaticallyOption:@YES
                     };
     }
@@ -170,6 +170,9 @@
     if (!coordinator) {
         return nil;
     }
+    
+    // this is new
+    // we load with private queue
     _managedObjectContext = [[NSManagedObjectContext alloc]
                              initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
@@ -214,55 +217,6 @@
 #pragma mark - notifications
 
 - (void)add_iCloudNotifications{
-    
-    
-//    [[NSNotificationCenter defaultCenter]
-//     addObserverForName:NSPersistentStoreCoordinatorStoresWillChangeNotification
-//     object:self.managedObjectContext.persistentStoreCoordinator
-//     queue:[NSOperationQueue mainQueue]
-//     usingBlock:^(NSNotification *note) {
-//         NSLog(@"NSPersistentStoreCoordinatorStoresWillChangeNotification");
-//         [self.managedObjectContext performBlock:^{
-//             [self.managedObjectContext reset];
-//         }];
-//         // drop any managed object references
-//         // disable user interface with setEnabled: or an overlay
-//
-//         
-//     }];
-//    
-//    
-//    [[NSNotificationCenter defaultCenter]
-//     addObserverForName:NSPersistentStoreCoordinatorStoresWillChangeNotification
-//     object:self.managedObjectContext.persistentStoreCoordinator
-//     queue:[NSOperationQueue mainQueue]
-//     usingBlock:^(NSNotification *note) {
-//         // disable user interface with setEnabled: or an overlay
-//         NSLog(@"NSPersistentStoreCoordinatorStoresWillChangeNotification");
-//         [self.managedObjectContext performBlock:^{
-//             if ([self.managedObjectContext hasChanges]) {
-//                 NSError *saveError;
-//                 if (![self.managedObjectContext save:&saveError]) {
-//                     NSLog(@"Save error: %@", saveError);
-//                 }
-//             } else {
-//                 // drop any managed object references
-//                 [self.managedObjectContext reset];
-//             }
-//         }];
-//     }];
-//
-//    
-//    [[NSNotificationCenter defaultCenter]
-//     addObserverForName:NSPersistentStoreDidImportUbiquitousContentChangesNotification
-//     object:self.managedObjectContext.persistentStoreCoordinator
-//     queue:[NSOperationQueue mainQueue]
-//     usingBlock:^(NSNotification *note) {
-//         NSLog(@"NSPersistentStoreDidImportUbiquitousContentChangesNotification");
-//         [self.managedObjectContext performBlock:^{
-//             [self.managedObjectContext mergeChangesFromContextDidSaveNotification:note];
-//         }];
-//     }];
     
     __weak NSPersistentStoreCoordinator *psc = self.managedObjectContext.persistentStoreCoordinator;
 

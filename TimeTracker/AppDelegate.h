@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#define ENABLE_PRESEED NO
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

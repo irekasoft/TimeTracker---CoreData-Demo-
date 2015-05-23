@@ -10,5 +10,6 @@
 #import <TimeTrackerKit/TimeTrackerKit.h>
 
 @interface SettingsVC : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *lbl_icloud_status;
 
 @end

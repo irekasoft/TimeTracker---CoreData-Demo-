@@ -17,7 +17,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    id currentiCloudToken = fileManager.ubiquityIdentityToken;
+    NSLog(@"icloud token %@",currentiCloudToken);
+    if (currentiCloudToken) {
+        NSData *newTokenData =
+        [NSKeyedArchiver archivedDataWithRootObject: currentiCloudToken];
+        [[NSUserDefaults standardUserDefaults]
+         setObject: newTokenData
+         forKey:@"com.apple.MyAppName.UbiquityIdentityToken"];
+    } else {
+        [[NSUserDefaults standardUserDefaults]
+         removeObjectForKey: @"com.apple.MyAppName.UbiquityIdentityToken"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

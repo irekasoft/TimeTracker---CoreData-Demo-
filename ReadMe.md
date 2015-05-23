@@ -57,8 +57,11 @@ So wherever on class, just import `#import <TimeTrackerKit/TimeTrackerKit.h>` to
 
 # Issue
 
+Issue with today view, when we start to implement iCloud support.
+
 Well, we can add data from Widget but when we back to app, it doesnt refresh automatically. Well we can recommend that do not add data from the extension. 
 
+We had issue when the iCloud didn't work. It was because we didn't 'on' the iCloud Document. This is for CoreData.
 
 # Reference
 

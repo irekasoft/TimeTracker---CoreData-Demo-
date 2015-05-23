@@ -23,6 +23,17 @@
     [self refreshCoreData];
     
     self.preferredContentSize = self.tableView.contentSize;
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(handleDataModelChange:)
+     name:NSManagedObjectContextObjectsDidChangeNotification
+     object:self.managedObjectContext];
+}
+
+- (void)handleDataModelChange:(NSNotification *)note
+{
+    [self refreshCoreData];
 }
 
 - (void)refreshCoreData{
