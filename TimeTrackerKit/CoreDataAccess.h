@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#define ENABLE_ICLOUD YES
+#define ENABLE_ICLOUD NO
 
 @interface CoreDataAccess : NSObject
 

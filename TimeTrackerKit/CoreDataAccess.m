@@ -75,12 +75,11 @@
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL;
     NSError *error = nil;
-    
-    
     storeURL = [self storeURL];
     
-    
-    NSDictionary *options;
+    NSMutableDictionary *options = [@{NSMigratePersistentStoresAutomaticallyOption: @YES,
+                                     NSInferMappingModelAutomaticallyOption:@YES
+                                     } mutableCopy];
     
     // probably we want to have a settings panel that request that we want to use
     // icloud or not
@@ -89,16 +88,13 @@
         // add icloud notification when we have the persistentcoordinator
         [self add_iCloudNotifications];
         
-        options = @{NSMigratePersistentStoresAutomaticallyOption:@YES,
-                    NSInferMappingModelAutomaticallyOption:@YES,
-                    NSPersistentStoreUbiquitousContentNameKey: @"iCloudStore",
-                    };
+        [options addEntriesFromDictionary:@{
+                                            NSPersistentStoreUbiquitousContentNameKey: @"iCloudStore",
+                                            }];
         
     }else{
         
-        options = @{NSMigratePersistentStoresAutomaticallyOption: @YES,
-                    NSInferMappingModelAutomaticallyOption:@YES
-                    };
+
     }
 
     
@@ -121,9 +117,6 @@
 
 
 # pragma mark - iCloud Support
-
-
-
 
 // Disabling iCloud Persistence
 - (void)migrateiCloudStoreToLocalStore {
@@ -174,7 +167,7 @@
     // this is new
     // we load with private queue
     _managedObjectContext = [[NSManagedObjectContext alloc]
-                             initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+                             initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     
     // add undo

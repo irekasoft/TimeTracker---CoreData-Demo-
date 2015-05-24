@@ -33,6 +33,7 @@
 
 - (void)handleDataModelChange:(NSNotification *)note
 {
+    NSLog(@"handleDataModelChange");
     [self refreshCoreData];
 }
 

@@ -23,6 +23,10 @@ Event has
 
 We have added iCloud support. Tested and seems to work. Although next refinement will coming.
 
+
+
+
+
 ## NSUndoManager
 
 This is implemented at CoreDataAccess. 
@@ -62,6 +66,12 @@ Issue with today view, when we start to implement iCloud support.
 Well, we can add data from Widget but when we back to app, it doesnt refresh automatically. Well we can recommend that do not add data from the extension. 
 
 We had issue when the iCloud didn't work. It was because we didn't 'on' the iCloud Document. This is for CoreData.
+
+There is problem with iCloud + CoreData. We cannot access from extention in iOS 8.
+
+https://devforums.apple.com/message/1051015#1051015
+
+It reads that CloudKit is the answer for distareous iCloud + CoreData.
 
 # Reference
 
